@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 use App\Models\Course;
+use App\Models\Student;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -24,14 +25,22 @@ class CourseController extends Controller
 
     public function show(Request $request)
     {
+        $nameOfStudents = [];
         $course = DB::table('courses')->find($request->id);
-        $studentHasCourses = DB::table('student_has_course')->where('class_id',$request->id);
+        $studentHasCourses = DB::table('student_has_course')->get();
+        // dd($studentHasCourses[0]);
         foreach ($studentHasCourses as $studentHasCourse) {
-            DB::table('student_has_course')->where('class_id',$request->id)
-            studentsName= $studentHasCourse->name
+            // dd($studentHasCourses);
+            $studentsName = DB::table('students')->find($studentHasCourse->student_id);
+            // $studentsNamee = DB::table('students')->find(1);
+            // dd($studentsName);
+            array_push($nameOfStudents, $studentsName);
+            // studentsName= Student::where('');
         }
-        $nameOfStudents=[]
-        return view('course', ['course' => $course]);
+
+        // dd($nameOfStudents);
+
+        return view('course', ['course' => $course, 'nameOfStudents' => $nameOfStudents]);
     }
 
     public function store(Request $request)

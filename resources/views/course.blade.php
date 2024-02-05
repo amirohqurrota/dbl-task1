@@ -9,9 +9,9 @@
 
     {{-- participant detail --}}
     <div class="mt-10 mx-20">
-        <h3 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Participant of this course :</h3>
-        @foreach ($studentHasCourses as $studentHasCourse)
-            <p>{{$studentHasCourse->name}}</p>
+        <h3 class="mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900  dark:text-white">Participant of this course :</h3>
+        @foreach ($nameOfStudents as $nameOfStudent)
+            <p>{{$nameOfStudent->name}}</p>
         @endforeach
     </div>
 
