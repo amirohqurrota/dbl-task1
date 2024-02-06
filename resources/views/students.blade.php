@@ -21,6 +21,9 @@
                                 Phone
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Status
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Action
                             </th>
                         </tr>
@@ -41,6 +44,9 @@
                                 {{ $student->telp}}
                             </td>
                             <td class="px-6 py-4">
+                                participating in {{count($student->courses)}} class
+                            </td>
+                            <td class="px-6 py-4">
                                 <div class="flex">
                                     <a href="/student/delete/{{ $student->id }}">
                                         <svg class="w-6 h-6 text-gray-800 hover:text-gray-600 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -52,11 +58,11 @@
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.3 4.8 2.9 2.9M7 7H4a1 1 0 0 0-1 1v10c0 .6.4 1 1 1h11c.6 0 1-.4 1-1v-4.5m2.4-10a2 2 0 0 1 0 3l-6.8 6.8L8 14l.7-3.6 6.9-6.8a2 2 0 0 1 2.8 0Z"/>
                                         </svg>
                                     </button>
-                                    {{-- <a href="/student/edit/{{ $student->id }}" data-modal-target="edit-modal" data-modal-toggle="edit-modal">
-                                        <svg class="w-6 h-6 text-gray-800 hover:text-gray-600  dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.3 4.8 2.9 2.9M7 7H4a1 1 0 0 0-1 1v10c0 .6.4 1 1 1h11c.6 0 1-.4 1-1v-4.5m2.4-10a2 2 0 0 1 0 3l-6.8 6.8L8 14l.7-3.6 6.9-6.8a2 2 0 0 1 2.8 0Z"/>
-                                        </svg>  
-                                    </a> --}}
+                                    <a href="/student/{{ $student->id }}">
+                                        <div>
+                                            <p class="text-lg font-medium text-gray-900 dark:text-white">...</p>
+                                        </div>                                      
+                                    </a>
                                 </div>
                             </td>
                         </tr>
@@ -149,15 +155,6 @@
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" >Name</label>
                         <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
-                    {{-- <div class="mb-5">
-                        <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" >Gender</label> --}}
-                        {{-- <input type="text" id="gender" name="gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"> --}}
-                        {{-- <select name="languages" id="gender">
-                            <option value="" selected class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"></option>
-                            <option value="female" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Female</option>
-                            <option value="male" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Male</option>
-                        </select>
-                    </div> --}}
                     <div class="mb-5">
                         <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" >Gender</label>
                         {{-- <input type="text" id="gender" value="{{$student->gender}}" name="gender" placeholder="male/female" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"> --}}

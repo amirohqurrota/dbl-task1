@@ -10,8 +10,20 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = DB::table('students')->get();
+        // $student = Student::findOrFail(4);
+        // $coursesCount = $student->courses;
+        // dd($coursesCount);
+        $students = Student::get();
         return view('students', ['students' => $students]);
+    }
+
+    public function show(Request $request)
+    {
+        $student = Student::findOrFail($request->id);
+        // $coursesCount = $student->courses;
+        // dd($coursesCount);
+        // $courses = Course::where($request->id)();
+        return view('student', ['student' => $student]);
     }
 
     public function store(Request $request)
@@ -55,6 +67,7 @@ class StudentController extends Controller
     public function delete(Request $request)
     {
         DB::table('students')->where('id', $request->id)->delete();
+        DB::table('student_has_course')->where('course_id', $request->id)->delete();
         return redirect('/students');
     }
 

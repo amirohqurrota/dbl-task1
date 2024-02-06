@@ -15,32 +15,21 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $courses = DB::table('courses')->get();
+        $course = Course::findOrFail(5);
+        $studentCount = $course->students;
+        // dd($studentCount);
+        $courses = Course::get();
         return view('courses', ['courses' => $courses]);
     }
-
-    // public function insertForm(Request $request){
-    //     dd($request);
-    // }
 
     public function show(Request $request)
     {
         // $nameOfStudents = [];
         $course = DB::table('courses')->find($request->id);
-        // $studentHasCourses = DB::table('student_has_course')->where('course_id',$request->id)->get();
         $studentHasCourses = DB::table('student_has_course')->where('course_id', $request->id)->pluck('student_id');
-        // $coursesParticipant = [];
-        // foreach ($studentHasCourses as $studentHasCourse) {
-        //     // dd($studentHasCourses);
-        //     $studentsName = DB::table('students')->find($studentHasCourse->student_id);
-        //     array_push($nameOfStudents, $studentsName);
-        // }
-        $coursesParticipant = DB::table('students')->whereIn('id', $studentHasCourses)->get();
 
-        // dd($nameOfStudents);
+        $coursesParticipant = DB::table('students')->whereIn('id', $studentHasCourses)->get();
         $studentsNotParticipant = DB::table('students')->whereNotIn('id', $studentHasCourses)->get();
-        // dd($studentsNotParticipant);
-        // $students = Product::whereNotIn('id', $excludedProducts)->get()
 
         return view('course', ['course' => $course, 'nameOfStudents' => $coursesParticipant, 'students' => $studentsNotParticipant]);
     }
@@ -85,6 +74,7 @@ class CourseController extends Controller
     public function delete(Request $request)
     {
         DB::table('courses')->where('id', $request->id)->delete();
+        DB::table('student_has_course')->where('course_id', $request->id)->delete();
         return redirect('/courses');
     }
 

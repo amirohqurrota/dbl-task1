@@ -33,5 +33,5 @@ Route::get('/student/delete/{id}', 'App\Http\Controllers\StudentController@delet
 Route::put('/student/update/{id}', 'App\Http\Controllers\StudentController@update')->name('student.update');
 // Route::get('/student/edit/{id}', 'App\Http\Controllers\StudentController@edit')->name('student.update');
 Route::post('/students/create', 'App\Http\Controllers\StudentController@store')->name('student.store');
-
+Route::get('/student/{id}', 'App\Http\Controllers\StudentController@show')->name('student.show');
 Route::post('/student-has-course/create', 'App\Http\Controllers\StudentHasCourseController@store')->name('student-has-course.store');

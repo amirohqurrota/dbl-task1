@@ -13,7 +13,7 @@ class Student extends Model
 
     protected $guarded = [];
 
-    public function course(): BelongsToMany
+    public function courses(): BelongsToMany
     {
 
         return $this->belongsToMany(
