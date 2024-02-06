@@ -42,9 +42,7 @@
 @section('content')
 <section>
     <div class="w-full bg-success px-30">
-        <h1 class="text-3xl font-bold underline">WELCOMW TO CLASS MANAGEMENT, CHOOSE YOUR ACTION </h1>
-        
-        <div class="flex justify-between w-70">
+        <div class="mt-20 mx-5 flex justify-between w-70">
             <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Class</h5>

@@ -87,4 +87,21 @@ class CourseController extends Controller
         DB::table('courses')->where('id', $request->id)->delete();
         return redirect('/courses');
     }
+
+    public function update(Request $request)
+    {
+        $course = Course::findOrFail($request->id);
+        $course->update([
+            'name'     => $request->name,
+            'description'     => $request->description,
+        ]);
+
+        // $student->name = $request->name;
+        // $student->gender = $request->gender;
+        // $student->date_of_birth = $request->birthdate;
+        // $student->save();
+
+        // return view('courses');
+        return redirect('/courses');
+    }
 }

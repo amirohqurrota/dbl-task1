@@ -72,9 +72,7 @@ class StudentController extends Controller
         $student->gender = $request->gender;
         $student->date_of_birth = $request->birthdate;
         $student->save();
-
-        return view('students');
-        // return redirect('/students');
+        return redirect('/students');
     }
 
     public function edit(Request $request)

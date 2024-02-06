@@ -2,8 +2,7 @@
 @section('content')
 <section>
     <div>
-        {{-- class list section --}}
-        <div class="w-4/5 bg-black justify-center flex flex-wrap space-x-4 space-y-4 ">
+        <div class="w-4/5  flex flex-wrap justify-center space-x-4 space-y-4 ">
             @foreach($courses as $course)
             <div class="max-w-sm w-1/4  p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">

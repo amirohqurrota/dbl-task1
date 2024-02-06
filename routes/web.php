@@ -23,7 +23,7 @@ Route::get('/course/{id}', 'App\Http\Controllers\CourseController@show')->name('
 Route::post('/course/create', 'App\Http\Controllers\CourseController@store')->name('course.store');
 Route::get('/course/delete/{id}', 'App\Http\Controllers\CourseController@delete')->name('course.delete');
 Route::put('/course/update/{id}', 'App\Http\Controllers\CourseController@update')->name('course.update');
-Route::get('/course/edit/{id}', 'App\Http\Controllers\CourseController@edit')->name('course.update');
+// Route::get('/course/edit/{id}', 'App\Http\Controllers\CourseController@edit')->name('course.update');
 
 Route::get('/students', 'App\Http\Controllers\StudentController@index')->name('students');
 // Route::get('/student/edit/{id}', function () {
@@ -31,7 +31,7 @@ Route::get('/students', 'App\Http\Controllers\StudentController@index')->name('s
 // });
 Route::get('/student/delete/{id}', 'App\Http\Controllers\StudentController@delete')->name('student.delete');
 Route::put('/student/update/{id}', 'App\Http\Controllers\StudentController@update')->name('student.update');
-Route::get('/student/edit/{id}', 'App\Http\Controllers\StudentController@edit')->name('student.update');
+// Route::get('/student/edit/{id}', 'App\Http\Controllers\StudentController@edit')->name('student.update');
 Route::post('/students/create', 'App\Http\Controllers\StudentController@store')->name('student.store');
 
 Route::post('/student-has-course/create', 'App\Http\Controllers\StudentHasCourseController@store')->name('student-has-course.store');
