@@ -11,8 +11,11 @@ class Student extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function course(): BelongsToMany
     {
+
         return $this->belongsToMany(
             'App\Models\Course',
             'student_has_course',

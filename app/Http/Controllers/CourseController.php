@@ -25,22 +25,24 @@ class CourseController extends Controller
 
     public function show(Request $request)
     {
-        $nameOfStudents = [];
+        // $nameOfStudents = [];
         $course = DB::table('courses')->find($request->id);
-        $studentHasCourses = DB::table('student_has_course')->get();
-        // dd($studentHasCourses[0]);
-        foreach ($studentHasCourses as $studentHasCourse) {
-            // dd($studentHasCourses);
-            $studentsName = DB::table('students')->find($studentHasCourse->student_id);
-            // $studentsNamee = DB::table('students')->find(1);
-            // dd($studentsName);
-            array_push($nameOfStudents, $studentsName);
-            // studentsName= Student::where('');
-        }
+        // $studentHasCourses = DB::table('student_has_course')->where('course_id',$request->id)->get();
+        $studentHasCourses = DB::table('student_has_course')->where('course_id', $request->id)->pluck('student_id');
+        // $coursesParticipant = [];
+        // foreach ($studentHasCourses as $studentHasCourse) {
+        //     // dd($studentHasCourses);
+        //     $studentsName = DB::table('students')->find($studentHasCourse->student_id);
+        //     array_push($nameOfStudents, $studentsName);
+        // }
+        $coursesParticipant = DB::table('students')->whereIn('id', $studentHasCourses)->get();
 
         // dd($nameOfStudents);
+        $studentsNotParticipant = DB::table('students')->whereNotIn('id', $studentHasCourses)->get();
+        // dd($studentsNotParticipant);
+        // $students = Product::whereNotIn('id', $excludedProducts)->get()
 
-        return view('course', ['course' => $course, 'nameOfStudents' => $nameOfStudents]);
+        return view('course', ['course' => $course, 'nameOfStudents' => $coursesParticipant, 'students' => $studentsNotParticipant]);
     }
 
     public function store(Request $request)
@@ -78,5 +80,11 @@ class CourseController extends Controller
         $course->status = 'active';
         $course->save();
         return redirect('courses')->with('status', "Insert successfully");
+    }
+
+    public function delete(Request $request)
+    {
+        DB::table('courses')->where('id', $request->id)->delete();
+        return redirect('/courses');
     }
 }

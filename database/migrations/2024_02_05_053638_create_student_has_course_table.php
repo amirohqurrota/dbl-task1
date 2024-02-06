@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('student_has_course', function (Blueprint $table) {
             $table->id();
-            $table->integer('class_id')->unsigned()->nullable();
+            $table->integer('course_id')->unsigned()->nullable();
             $table->integer('student_id')->unsigned()->nullable();
             $table->timestamps();
         });

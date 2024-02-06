@@ -51,4 +51,35 @@ class StudentController extends Controller
         $student->save();
         return redirect('students')->with('status', "Insert successfully");
     }
+
+    public function delete(Request $request)
+    {
+        DB::table('students')->where('id', $request->id)->delete();
+        return redirect('/students');
+    }
+
+    public function update(Request $request)
+    {
+        $student = Student::findOrFail($request->id);
+        // $student->update([
+        //     'name'     => $request->name,
+        //     'gender'     => $request->gender,
+        //     'date_of_birth'   => $request->birthdate,
+        //     'telp'   => $request->phone,
+        // ]);
+
+        $student->name = $request->name;
+        $student->gender = $request->gender;
+        $student->date_of_birth = $request->birthdate;
+        $student->save();
+
+        return view('students');
+        // return redirect('/students');
+    }
+
+    public function edit(Request $request)
+    {
+        $student = Student::findOrFail($request->id);
+        return view('student-edit', ['student' => $student]);
+    }
 }
